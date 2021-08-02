@@ -2,9 +2,9 @@
 
 using namespace std;
 
-void main(){
+int main(){
 
-    bool condicao1=true;
+    bool condicao1=true; // false
     bool condicao2= 2>5;
 
     cout << condicao1 << endl;
@@ -16,5 +16,5 @@ void main(){
     cout << condicao1 << endl;
     cout << condicao2 << endl;
 
-
+    return 0;
 }

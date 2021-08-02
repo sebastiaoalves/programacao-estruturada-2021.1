@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-    auto x = 10;
+    auto x = 1000000000000000;
     cin >> x;
     cout << x << endl;
 

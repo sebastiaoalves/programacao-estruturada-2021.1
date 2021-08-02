@@ -5,6 +5,7 @@ using namespace std;
 
 int main()
 {
+    // charset
     char letra = 'a'; // O que é armazenado é o código do caractere
 
     cin >> letra;
@@ -12,7 +13,7 @@ int main()
     cout << letra << ' ' << letra+3 << ' ' << char (letra-3) << ' '  << endl;
 
     // Exemplos de caracteres visíveis, de controle e terminação em nulo
-    string nome="Sebastião\n", sobrenome="\t    Alv\0es"; 
+    string nome="Sebastião\n", sobrenome="\t    Al\0ves"; 
 
     cout << nome << ' ' << sobrenome << endl;
 
