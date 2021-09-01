@@ -1,20 +1,20 @@
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
-// UERN
-
-// REUN
-// NURE
-
 string le_palavra ( ) {
     string palavra;
-    cout << "Digite a palvra: ";
+    cout << "Digite a palavra a ser embaralhada: ";
     cin >> palavra;
     return palavra;
 }
 
-//string embaralha_palavra (string palavra_original)
+string embaralha_palavra (string palavra_original){
+    string palavra_embaralhada = random_shuffle(
+        palavra_original.begin(), palavra_original.end());
+    return palavra_embaralhada;
+}
 
 
 int calcular_pontuacao (int num_palavras_corretas, int tempo_gasto){
@@ -34,23 +34,21 @@ int calcular_pontuacao (int num_palavras_corretas, int tempo_gasto){
 
 int main(){
     // Ler a palavra
-//    cout << "1ª exeucção " << endl;
-//    le_palavra ( );
-
-    cout << calcular_pontuacao(2, 5) << " estrelas " << endl;
-
-    cout << calcular_pontuacao(1, 5) << " estrelas " << endl;
-
-    cout << calcular_pontuacao(2, 20) << " estrelas " << endl;
-
-    cout << calcular_pontuacao(1, 50) << " estrelas " << endl;
-
-    cout << calcular_pontuacao(0, 7) << " estrelas " << endl;
-
-    cout << calcular_pontuacao(0, 30) << " estrelas " << endl;
-
+    string palavra_original = le_palavra ( );
+    cout << "Foi lida a palavra: " << palavra_original << endl;
 
     // Embaralhar a palavra
+
+/*
+    cout << calcular_pontuacao(2, 5) << " estrelas " << endl;
+    cout << calcular_pontuacao(1, 5) << " estrelas " << endl;
+    cout << calcular_pontuacao(2, 20) << " estrelas " << endl;
+    cout << calcular_pontuacao(1, 50) << " estrelas " << endl;
+    cout << calcular_pontuacao(0, 7) << " estrelas " << endl;
+    cout << calcular_pontuacao(0, 30) << " estrelas " << endl;
+*/
+
+    
     // Exibir a primeira palavra embaralhada
     // Ler a primeira tentativa
     // Verificar se acertou a 1ª
