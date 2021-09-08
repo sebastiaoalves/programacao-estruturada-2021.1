@@ -1,5 +1,7 @@
 #include <iostream>
 #include <algorithm>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -11,9 +13,10 @@ string le_palavra ( ) {
 }
 
 string embaralha_palavra (string palavra_original){
-    string palavra_embaralhada = random_shuffle(
-        palavra_original.begin(), palavra_original.end());
-    return palavra_embaralhada;
+    srand(time(nullptr));
+    string palavra_modificada = palavra_original;
+    random_shuffle(palavra_modificada.begin(), palavra_modificada.end());
+    return palavra_modificada;
 }
 
 
@@ -35,27 +38,49 @@ int calcular_pontuacao (int num_palavras_corretas, int tempo_gasto){
 int main(){
     // Ler a palavra
     string palavra_original = le_palavra ( );
-    cout << "Foi lida a palavra: " << palavra_original << endl;
-
+    
     // Embaralhar a palavra
-
-/*
-    cout << calcular_pontuacao(2, 5) << " estrelas " << endl;
-    cout << calcular_pontuacao(1, 5) << " estrelas " << endl;
-    cout << calcular_pontuacao(2, 20) << " estrelas " << endl;
-    cout << calcular_pontuacao(1, 50) << " estrelas " << endl;
-    cout << calcular_pontuacao(0, 7) << " estrelas " << endl;
-    cout << calcular_pontuacao(0, 30) << " estrelas " << endl;
-*/
-
+    string palavra1 = embaralha_palavra(palavra_original);
     
     // Exibir a primeira palavra embaralhada
+    cout << "1ª palavra a ser digitada: " << palavra1 << endl;
+    time_t tempo_inicial = time(nullptr);
+
     // Ler a primeira tentativa
+    string tentativa1;
+    cout << "Digite a 1ª palavra: ";
+    cin >> tentativa1;
+
     // Verificar se acertou a 1ª
+    int acertos = 0;
+    if (tentativa1 == palavra1)
+        acertos++;
+    
     // Exibir a segunda palavra embaralhada
+    string palavra2 = embaralha_palavra(palavra_original);
+    cout << "2ª palavra a ser digitada: " << palavra2 << endl;
+
     // Ler a segunda tentativa
+    string tentativa2;
+    cout << "Digite a 2ª palavra: ";
+    cin >> tentativa2;
+
+    time_t tempo_final = time(nullptr);
+
     // Verificar se acertou a 2ª
+    if (tentativa2 == palavra2)
+        acertos++;
+
+    cout << "Acertos: " << acertos << endl;
+
     // Medir o tempo gasto
+    int tempo_gasto = tempo_final - tempo_inicial;
+
+    cout << "Tempo gasto: " << tempo_gasto << " segundos." << endl;
+
     // Exibir pontuação
+    int estrelas = calcular_pontuacao(acertos, tempo_gasto);
+    cout << "Sua pontuação: " << estrelas << " estrelas!" << endl;
+
     return 0;
 }

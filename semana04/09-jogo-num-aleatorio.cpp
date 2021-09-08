@@ -4,16 +4,18 @@
 
 using namespace std;
 
+const int NUM_MAX = 16;
+
 int gera_numero_aleatorio(){
     srand (time (nullptr));  // Gera uma semente aleatória
-    int numero = rand() % 10 + 1;
+    int numero = rand() % NUM_MAX + 1;
     return numero;
 }
 
 // Ler as tentativas do usuário
 int le_tentativas_usuario(int numero_a_ser_adivinhado){
 
-    cout << "Você tem que adivinha um número entre 1 e 1024" << endl;
+    cout << "Você tem que adivinha um número entre 1 e " << NUM_MAX << endl;
     
     int tentativas = 0, chute_usuario;
 
@@ -34,7 +36,18 @@ int le_tentativas_usuario(int numero_a_ser_adivinhado){
 
 // Calcular a pontuação
 int calcula_pontuacao (int numero_tentativas, int tempo_ate_acertar){
-    return 0;
+    if(numero_tentativas<=5 && tempo_ate_acertar<60)
+        return 5;
+    else if (numero_tentativas<=8 && tempo_ate_acertar < 60)
+        return 4;
+    else if (numero_tentativas<=10 && tempo_ate_acertar < 60)
+        return 3;
+    else if (numero_tentativas<=8)
+        return 2;
+    else if (numero_tentativas<=10)
+        return 1;
+    else
+        return 0;
 }
 
 int main(){
@@ -44,14 +57,19 @@ int main(){
 
     // Ler as tentativas do usuário
     time_t hora_inicio = time(nullptr);
-    int tentativas_do_usuario = le_tentativas_usuario(numero_a_ser_adivinhado);
-    time_t hora_fim = time(nullptr);
 
-    cout << "O usuário demorou " << hora_fim - hora_inicio  << " segundos." << endl;
+    int tentativas_do_usuario = le_tentativas_usuario(numero_a_ser_adivinhado);
+
+    time_t hora_fim = time(nullptr);
+    int tempo_decorrido = hora_fim - hora_inicio;
 
     // Calcular a pontuação
+    int estrelas = calcula_pontuacao (tentativas_do_usuario, tempo_decorrido);
 
     // Exibir o resultado
+    cout << "Você usou " << tentativas_do_usuario << " tentativas." << endl;
+    cout << "Tempo gasto: " << tempo_decorrido << " segundos!" << endl;
+    cout << "Pontuação: " << estrelas << " estrelas!" << endl;
 
     return 0;
 }
